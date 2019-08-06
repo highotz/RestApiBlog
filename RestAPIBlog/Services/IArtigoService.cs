@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RestAPIBlog.Services
 {
-    interface IArtigoService
+    public interface IArtigoService
     {
         Artigo Create(Artigo artigo);
         Artigo FindById(long id);

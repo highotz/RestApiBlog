@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RestAPIBlog.Services
 {
-    interface IComentarioService
+    public interface IComentarioService
     {
         Comentario Create(Comentario comentario);
         Comentario FindById(long id);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RestAPIBlog.Services
 {
-    interface IUsuarioService
+    public interface IUsuarioService
     {
         Usuario Create(Usuario usuairo, string confirmaSenha);
         Usuario FindById(long id);

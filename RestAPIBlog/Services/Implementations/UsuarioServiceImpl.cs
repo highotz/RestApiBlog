@@ -1,13 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using RestAPIBlog.Models;
+using RestAPIBlog.Models.Context;
 
 namespace RestAPIBlog.Services.Implementations
 {
     public class UsuarioServiceImpl : IUsuarioService
     {
-        public Usuario Create(Usuario usuairo, string confirmaSenha)
+
+        private MySQLContext _context;
+
+        public UsuarioServiceImpl(MySQLContext context)
         {
+            _context = context;
+        }
+
+
+        public Usuario Create(Usuario usuario, string confirmaSenha)
+        {
+            try
+            {
+                if (usuario.senha == confirmaSenha)
+                {
+                    _context.Add(usuario);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
             throw new NotImplementedException();
         }
 

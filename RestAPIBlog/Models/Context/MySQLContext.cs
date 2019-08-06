@@ -15,6 +15,8 @@ namespace RestAPIBlog.Models.Context
 
         public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) { }
 
-        public DbSet<>
+        public DbSet<Artigo> Artigos { get; set; }
+        public DbSet<Comentario> Comentarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

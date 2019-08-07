@@ -9,6 +9,6 @@ namespace RestAPIBlog.Services
         Comentario FindById(long id);
         List<Comentario> FindAll();
         Comentario Update(Comentario comentario);
-        bool Delete(long id);
+        void Delete(long id);
     }
 }

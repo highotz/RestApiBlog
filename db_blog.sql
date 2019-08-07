@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbl_artigo`
+-- Table structure for table `artigos`
 --
 
-DROP TABLE IF EXISTS `tbl_artigo`;
+DROP TABLE IF EXISTS `artigos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `tbl_artigo` (
+CREATE TABLE `artigos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `permalink` text NOT NULL,
   `texto` text NOT NULL,
@@ -33,27 +33,27 @@ CREATE TABLE `tbl_artigo` (
   `autor` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_idUsuario_tblArtigo_idx` (`autor`),
-  CONSTRAINT `fk_idUsuario_tblArtigo` FOREIGN KEY (`autor`) REFERENCES `tbl_usuario` (`id`)
+  CONSTRAINT `fk_idUsuario_tblArtigo` FOREIGN KEY (`autor`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_artigo`
+-- Dumping data for table `artigos`
 --
 
-LOCK TABLES `tbl_artigo` WRITE;
-/*!40000 ALTER TABLE `tbl_artigo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_artigo` ENABLE KEYS */;
+LOCK TABLES `artigos` WRITE;
+/*!40000 ALTER TABLE `artigos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artigos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbl_comentario`
+-- Table structure for table `comentarios`
 --
 
-DROP TABLE IF EXISTS `tbl_comentario`;
+DROP TABLE IF EXISTS `comentarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `tbl_comentario` (
+CREATE TABLE `comentarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `texto` text NOT NULL,
   `autor` int(11) NOT NULL,
@@ -61,28 +61,28 @@ CREATE TABLE `tbl_comentario` (
   PRIMARY KEY (`id`),
   KEY `fk_idUsuario_tblComentario_idx` (`autor`),
   KEY `fk_permalink_tblComentario_idx` (`artigo`),
-  CONSTRAINT `fk_idUsuario_tblComentario` FOREIGN KEY (`autor`) REFERENCES `tbl_usuario` (`id`),
-  CONSTRAINT `fk_permalink_tblComentario` FOREIGN KEY (`artigo`) REFERENCES `tbl_artigo` (`id`)
+  CONSTRAINT `fk_idUsuario_tblComentario` FOREIGN KEY (`autor`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `fk_permalink_tblComentario` FOREIGN KEY (`artigo`) REFERENCES `artigos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_comentario`
+-- Dumping data for table `comentarios`
 --
 
-LOCK TABLES `tbl_comentario` WRITE;
-/*!40000 ALTER TABLE `tbl_comentario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_comentario` ENABLE KEYS */;
+LOCK TABLES `comentarios` WRITE;
+/*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbl_usuario`
+-- Table structure for table `usuarios`
 --
 
-DROP TABLE IF EXISTS `tbl_usuario`;
+DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `tbl_usuario` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
@@ -93,12 +93,12 @@ CREATE TABLE `tbl_usuario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_usuario`
+-- Dumping data for table `usuarios`
 --
 
-LOCK TABLES `tbl_usuario` WRITE;
-/*!40000 ALTER TABLE `tbl_usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_usuario` ENABLE KEYS */;
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -118,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-06  1:28:31
+-- Dump completed on 2019-08-07  2:44:18

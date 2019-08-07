@@ -9,6 +9,6 @@ namespace RestAPIBlog.Services
         Artigo FindById(long id);
         List<Artigo> FindAll();
         Artigo Update(Artigo artigo);
-        bool Delete(long id);
+        void Delete(long id);
     }
 }

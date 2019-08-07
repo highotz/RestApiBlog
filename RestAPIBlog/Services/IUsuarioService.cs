@@ -9,6 +9,6 @@ namespace RestAPIBlog.Services
         Usuario FindById(long id);
         List<Usuario> FindAll();
         Usuario Update(Usuario usuario);
-        bool Delete(long id);
+        void Delete(long id);
     }
 }

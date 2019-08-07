@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RestAPIBlog.Models;
 using RestAPIBlog.Models.Context;
 
@@ -32,24 +33,54 @@ namespace RestAPIBlog.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public bool Delete(long id)
+        public void Delete(long id)
         {
-            throw new NotImplementedException();
+            var result = _context.Usuarios.SingleOrDefault(u => u.id.Equals(id));
+
+            try
+            {
+                if (result != null) _context.Usuarios.Remove(result);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Usuario> FindAll()
         {
-            throw new NotImplementedException();
+            return _context.Usuarios.ToList();
         }
 
         public Usuario FindById(long id)
         {
-            throw new NotImplementedException();
+            return _context.Usuarios.SingleOrDefault(u => u.id.Equals(id));
         }
 
         public Usuario Update(Usuario usuario)
         {
-            throw new NotImplementedException();
+            if (!Exist(usuario.id)) return new Usuario();
+
+            var result = _context.Artigos.SingleOrDefault(u => u.id.Equals(usuario.id));
+
+            try
+            {
+                _context.Entry(result).CurrentValues.SetValues(usuario);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return usuario;
+        }
+
+        private bool Exist(long? id)
+        {
+            return _context.Usuarios.Any(u => u.id.Equals(id));
         }
     }
 }

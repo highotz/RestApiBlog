@@ -4,6 +4,7 @@ namespace RestAPIBlog.Models
 {
     public class Artigo
     {
+        public long id { get; set; }
         public string permalink { get; set; }
         public string texto { get; set; }
         public string titulo { get; set; }

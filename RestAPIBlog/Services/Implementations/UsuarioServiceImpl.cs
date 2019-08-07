@@ -16,15 +16,12 @@ namespace RestAPIBlog.Services.Implementations
         }
 
 
-        public Usuario Create(Usuario usuario, string confirmaSenha)
+        public Usuario Create(Usuario usuario)
         {
             try
             {
-                if (usuario.senha == confirmaSenha)
-                {
                     _context.Add(usuario);
                     _context.SaveChanges();
-                }
             }
             catch (Exception ex)
             {

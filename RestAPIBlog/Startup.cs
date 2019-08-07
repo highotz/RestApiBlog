@@ -27,7 +27,7 @@ namespace RestAPIBlog
 
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<IUsuarioService, UsuarioServiceImpl>();
             services.AddScoped<IArtigoService, ArtigoServiceImpl>();

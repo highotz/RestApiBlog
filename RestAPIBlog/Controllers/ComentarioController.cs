@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestAPIBlog.Models;
 using RestAPIBlog.Services;
 
 namespace RestAPIBlog.Controllers
@@ -23,34 +20,42 @@ namespace RestAPIBlog.Controllers
 
         // GET: api/Comentario
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_comentarioService.FindAll());
         }
 
         // GET: api/Comentario/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            return "value";
+            var comentario = _comentarioService.FindById(id);
+            if (comentario == null) return NotFound();
+            return Ok(comentario);
         }
 
         // POST: api/Comentario
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Comentario comentario)
         {
+            if (comentario == null) return BadRequest();
+            return new ObjectResult(_comentarioService.Create(comentario));
         }
 
         // PUT: api/Comentario/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put([FromBody] Comentario comentario)
         {
+            if (comentario == null) return BadRequest();
+            return new ObjectResult(_comentarioService.Update(comentario));
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(long id)
         {
+            _comentarioService.Delete(id);
+            return NoContent();
         }
     }
 }
